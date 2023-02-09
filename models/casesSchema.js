@@ -2,22 +2,40 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 
 const casesSchema = new mongoose.Schema({
-    caseNumber: {
+    acoountName: {
         type: String,
         required: true,
         trim: true
     },
-    title: {
+    channels: {
         type: String,
         required: true,
         trim: true
     },
-    product:{
+    contactName:{
         type: String,
         required: true,
         trim: true
     },
-    emil: {
+    mobile:{
+        type: Number,
+        trim: true ,
+        required: true,
+        unique: true,
+        minlength: 10,
+        maxlength: 10
+    },
+    allCaseType:{
+      type: String,
+      required: true,
+
+    },
+    casetitile:{
+        type: String,
+        required: true,
+        trim: true 
+    },
+    email: {
         type: String,
         required: true,
         unique: true,
@@ -27,71 +45,102 @@ const casesSchema = new mongoose.Schema({
             }
         }
     },
-    status: {
+    productCategory:{
+        type: String,
+        required:true
+    },
+    phone:{
+        type: String,
+        required: true,
+        trim: true  
+    },
+    product: {
         type: String,
         required: true,
     },
-    subStatus:{
+    address:{
         type: String,
         required: true, 
     },
+    brand:{
+        type:String,
+        required:true
+    },
+    pinCode:{
+        type:Number,
+        required:true,
+        minlength: 6,
+        
+    },
+    serialNo:{
+        type:Number,
+        required:true
+    },
     technician:{
-        type:String,
-        required:true
-    },
-    technicianstatus:{
-        type:String,
-        required:true
-    },
-    accountName:{
-        type:String,
-        required:true
-    },
-    contactName:{
         type:String,
         required:true,
     },
 
-    mobile: {
+    model: {
         type: String,
         required: true,
-        unique: true,
-        minlength: 10,
-        maxlength: 10
+        
     },
-   
-   phone:{
+    warranty:{
     type: String,
-    required: false,
-    unique: true,
+    required:true
    },
-   address:{
+   priority:{
     type: String,
     required: true,
    },
-   priority:{
+   problem:{
     type:String,
     required:true
    },
-   agent:{
+   source:{
     type:String,
     required:true
    },
-   channel:{
-    type:String,
+   reason:{
+    type: String,
+    required:true
+   
+   },
+   invoiceNumber:{
+    type: Number,
+    required:true
+   
+   },
+   quantity:{
+    type: Number,
     required:true
    },
    remarks:{
     type: String,
-    required: false,
+    required: true,
    },
-   comment:{
+   otherDetails:{
     type: String,
-    required: false,
+    required: true,
    },
+   tags:{
+    type: String,
+    required: true,
+   },
+   agents:{
+    type: String,
+    required: true,
+   },
+   visibility:{
+    type: String,
+    required:true
+   },
+   
     datecreated:Date,
     dateUpdated:Date
 });
 
 // model
-const users = new mongoose.model("users",casesSchema);
+const cases = new mongoose.model("cases",casesSchema);
+module.exports = cases;
