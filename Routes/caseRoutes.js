@@ -26,5 +26,24 @@ router.post("/register",async(req,res)=>{
     }
 });
 
+//get caseData
 
+router.get('/getdata',async(req,res)=>{
+
+    try{
+        const casedata = await Case.find();
+        
+        res.send({
+          success:true,
+          message: "User details fetched successfully",
+          data: casedata,
+        })
+    }catch(error){
+      res.send({
+        success: false,
+        message: error.message,
+      });
+    }
+  
+  })
 module.exports = router
